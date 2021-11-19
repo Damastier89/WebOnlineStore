@@ -8,16 +8,19 @@ import { AddProductPageComponent } from './add-product-page/add-product-page.com
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { EditProductPageComponent } from './edit-product-page/edit-product-page.component';
 import { OrderProductPageComponent } from './order-product-page/order-product-page.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
           {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
-          {path: 'login', component: LoginPageComponent},
           {path: 'add-product', component: AddProductPageComponent},
+          {path: 'login', component: LoginPageComponent},
           {path: 'dashboard', component: DashboardPageComponent},
           {path: 'product/:id/edit', component: EditProductPageComponent},
           {path: 'order', component: OrderProductPageComponent},

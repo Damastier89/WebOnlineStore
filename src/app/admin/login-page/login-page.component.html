@@ -1,1 +1,21 @@
-<p>login-page works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h2>Login as administrator</h2>
+
+    <div class="form-control">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email">
+      <div 
+        class="validation" 
+        *ngIf="form.get('email')?.touched && form.get('email')?.invalid"  
+      >
+        <small *ngIf="form.get('email')?.errors?.['required']">
+          Please, enter e-mail...
+        </small>
+        <small *ngIf="form.get('email')?.errors?.['email']">
+          Please, enter correctly e-mail...
+        </small>
+      </div>
+    </div>
+
+
+</form>
