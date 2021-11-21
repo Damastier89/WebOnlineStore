@@ -2,6 +2,8 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
+import { MatButtonModule } from '@angular/material/button';
+
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { AdminLayoutComponent } from "./shared/admin-layout/admin-layout.component";
 import { AddProductPageComponent } from './add-product-page/add-product-page.component';
@@ -9,12 +11,14 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { EditProductPageComponent } from './edit-product-page/edit-product-page.component';
 import { OrderProductPageComponent } from './order-product-page/order-product-page.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from "@angular/material/core";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatButtonModule,
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
@@ -36,6 +40,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     DashboardPageComponent,
     EditProductPageComponent,
     OrderProductPageComponent
+  ],
+  providers: [
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ]
 })
 

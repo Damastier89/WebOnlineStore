@@ -1,9 +1,9 @@
-<nav class="navbar-penal bg-dark">
-  <h1>
+<nav class="navbar bg-dark">
+  <h2 [style.paddingTop.px]="12">
     <a routerLink="/">Online Store</a>
-  </h1>
+  </h2>
 
-  <ul class="navbar-penal__menu">
+  <ul class="navbar__menu">
     <li routerLinkActive="active">
       <a [routerLink]="['/admin', 'dashboard']">Dashboard</a>
     </li>
@@ -17,7 +17,7 @@
       <a [routerLink]="['/admin', 'login']">Login</a>
     </li>
     <li routerLinkActive="active">
-      <a [routerLink]="['/admin', '']">Logout</a>
+      <a href="#" (click)="logout($event)" >Logout</a>
     </li>
   </ul>
 </nav>
