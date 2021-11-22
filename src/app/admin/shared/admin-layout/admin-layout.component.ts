@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/service/auth.service';
+import { AuthService } from 'src/app/admin/shared/service/auth.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 export class AdminLayoutComponent implements OnInit {
 
   constructor( 
-    private auth: AuthService,
+    public auth: AuthService,
     private router: Router,
     ) { }
 

@@ -3,7 +3,7 @@
     <a routerLink="/">Online Store</a>
   </h2>
 
-  <ul class="navbar__menu">
+  <ul class="navbar__menu" *ngIf="auth.isAuthenticated(); else login">
     <li routerLinkActive="active">
       <a [routerLink]="['/admin', 'dashboard']">Dashboard</a>
     </li>
@@ -13,13 +13,20 @@
     <li routerLinkActive="active">
       <a [routerLink]="['/admin', 'order']">Order</a>
     </li>
-    <li routerLinkActive="active">
-      <a [routerLink]="['/admin', 'login']">Login</a>
-    </li>
+    
     <li routerLinkActive="active">
       <a href="#" (click)="logout($event)" >Logout</a>
     </li>
   </ul>
+
+  <ng-template #login>
+    <ul class="navbar__menu">
+      <li routerLinkActive="active">
+        <a [routerLink]="['/admin', 'login']">Login</a>
+      </li>
+    </ul>
+  </ng-template>
+  
 </nav>
 
 <div class="container">
