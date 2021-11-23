@@ -34,6 +34,7 @@ $AppStore-theme: mat.define-light-theme((
 @include mat.all-component-themes($AppStore-theme);
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import '~quill/dist/quill.snow.css';
 
 :root {
   --primary-color: #000000;
@@ -49,12 +50,14 @@ $AppStore-theme: mat.define-light-theme((
   padding: 0;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
+html, body { height: 100%; }
+body { 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
-  color: #333;
+  color: #333; 
+  margin: 0; 
 }
 
 // a {
@@ -104,9 +107,9 @@ img {
   color: var(--danger-color);
 }
 
-.text-center {
-  text-align: center;
-}
+// .text-center {
+//   text-align: center;
+// }
 
 .list {
   margin: 0.5rem 0;
@@ -317,6 +320,20 @@ table th {
 //   }
 // }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+.snackBar {
+  &-success {
+    .mat-simple-snackbar-action {
+      color: limegreen;
+    }
+  }
+  &-warning {
+    .mat-simple-snackbar-action {
+      color: #ffc058;
+    }
+  }
+  &-error {
+    .mat-simple-snackbar-action {
+      color:#b10012;
+    }
+  }
+}

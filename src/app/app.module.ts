@@ -7,9 +7,10 @@ import { MainLayoutComponent } from './shared/main-layout/main-layout.component'
 import { MainPageComponent } from './main-page/main-page.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { ShoppingCartPageComponent } from './shopping-cart-page/shopping-cart-page.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';;
 import { MaterialModule } from './shared/material.module';
+import { SharedModule } from './shared/shared.module';
+import { QuillModule } from "ngx-quill";
 
 @NgModule({
   declarations: [
@@ -17,14 +18,15 @@ import { MaterialModule } from './shared/material.module';
     MainLayoutComponent,
     MainPageComponent,
     ProductPageComponent,
-    ShoppingCartPageComponent
+    ShoppingCartPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
     MaterialModule,
+    SharedModule,
+    QuillModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

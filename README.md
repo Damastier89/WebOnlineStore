@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Error - "import QuillType, { Delta } from 'quill'
+If an error occurs after installing ngx-quill and quill. Error - "import QuillType, { Delta } from 'quill'"
+Then you need to install : npm i @types/quill@1.3.10

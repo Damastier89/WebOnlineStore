@@ -19,9 +19,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginPageComponent implements OnInit {
   public form = new FormGroup({
-      email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required, Validators.minLength(7)]),
-    })
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [Validators.required, Validators.minLength(7)]),
+  });
   public submitted: boolean = false;
   public matcher = new MyErrorStateMatcher();
 
@@ -45,9 +45,7 @@ export class LoginPageComponent implements OnInit {
       returnSecureToken: true,
     }
 
-    this.auth.login(admin).subscribe((res) => {
-      console.log(res);
-      
+    this.auth.login(admin).subscribe(() => {
       this.form.reset();
       this.router.navigate(['/admin', 'dashboard'])
       this.submitted = false;
