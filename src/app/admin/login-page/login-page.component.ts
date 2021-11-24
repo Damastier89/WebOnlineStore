@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { Admin } from 'src/app/shared/interfaces/admin';
-import { AuthService } from 'src/app/admin/shared/service/auth.service';
+import { Admin } from '../../../app/shared/interfaces/admin';
+import { AuthService } from '../../../app/admin/shared/service/auth.service';
+import { SnackBarService } from '../../shared/services/snack-bar.service';
+import { SnackBarTypes } from '../../../app/shared/_models/snack-bar-types.enum';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -15,7 +17,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
   public form = new FormGroup({
@@ -28,6 +30,7 @@ export class LoginPageComponent implements OnInit {
   constructor( 
     public auth: AuthService,
     private router: Router,
+    // private snackBarService: SnackBarService,
     ) { }
 
   ngOnInit(): void {}
@@ -52,6 +55,15 @@ export class LoginPageComponent implements OnInit {
     }, () => {
       this.submitted = false;
     })
+    // this._openSnackBar(SnackBarTypes.Success, 'Вы вошли как ');
   }
+
+  // private _openSnackBar(actionType: string, message: string): void {
+  //   message = message + '[admin] ';
+  //   this.snackBarService.openSnackBar({
+  //     actionType,
+  //     message,
+  //   })
+  // }
 
 }

@@ -25,7 +25,7 @@ const actionsData: any = {
 })
 export class SnackBarService {
 
-  constructor( private _snackBar: MatSnackBar,) { }
+  constructor( private snackBar: MatSnackBar,) { }
 
   public openSnackBar(cfg: openConfig): MatSnackBarRef<TextOnlySnackBar> {
     if (typeof cfg.matSnackBarCfg === 'undefined') {
@@ -35,6 +35,6 @@ export class SnackBarService {
       cfg.matSnackBarCfg.duration = 5000;
     }
     cfg.matSnackBarCfg.panelClass = actionsData[cfg.actionType].cssClass;
-    return this._snackBar.open(cfg.message , actionsData[cfg.actionType].txt, cfg.matSnackBarCfg);
+    return this.snackBar.open(cfg.message , actionsData[cfg.actionType].txt, cfg.matSnackBarCfg);
   };
 }

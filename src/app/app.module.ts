@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';;
 import { MaterialModule } from './shared/material.module';
 import { SharedModule } from './shared/shared.module';
 import { QuillModule } from "ngx-quill";
+import { ConfirmComponent } from './shared/_models/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { QuillModule } from "ngx-quill";
     MainPageComponent,
     ProductPageComponent,
     ShoppingCartPageComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
