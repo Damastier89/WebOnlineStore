@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, Subject, throwError } from 'rxjs';
-import { Admin } from '../../../shared/interfaces/admin';
+import { Admin } from '../interfaces/admin';
 import { catchError, tap } from 'rxjs/operators'
 
 const env = environment.apiKey;
@@ -24,7 +24,7 @@ export class AuthService {
     return localStorage.getItem('fb-token');
   }
 
-  public login(admin: Admin): Observable<any> {
+  public login(admin: Admin): Observable<Admin> {
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${env}`, admin)
     .pipe(
       tap(this.setToken),

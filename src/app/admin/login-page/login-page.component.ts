@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { Admin } from '../../../app/shared/interfaces/admin';
-import { AuthService } from '../../../app/admin/shared/service/auth.service';
+import { Admin } from '../shared/interfaces/admin';
+import { AuthService } from '../shared/services/auth.service';
 import { SnackBarService } from '../../shared/services/snack-bar.service';
 import { SnackBarTypes } from '../../../app/shared/_models/snack-bar-types.enum';
 
@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit {
   constructor( 
     public auth: AuthService,
     private router: Router,
-    // private snackBarService: SnackBarService,
+    private snackBarService: SnackBarService,
     ) { }
 
   ngOnInit(): void {}
@@ -55,15 +55,15 @@ export class LoginPageComponent implements OnInit {
     }, () => {
       this.submitted = false;
     })
-    // this._openSnackBar(SnackBarTypes.Success, 'Вы вошли как ');
+    this._openSnackBar(SnackBarTypes.Success, 'Вы вошли как ');
   }
 
-  // private _openSnackBar(actionType: string, message: string): void {
-  //   message = message + '[admin] ';
-  //   this.snackBarService.openSnackBar({
-  //     actionType,
-  //     message,
-  //   })
-  // }
+  private _openSnackBar(actionType: string, message: string): void {
+    message = message + '[ admin ] ';
+    this.snackBarService.openSnackBar({
+      actionType,
+      message,
+    })
+  }
 
 }

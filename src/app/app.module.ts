@@ -12,6 +12,8 @@ import { MaterialModule } from './shared/material.module';
 import { SharedModule } from './shared/shared.module';
 import { QuillModule } from "ngx-quill";
 import { ConfirmComponent } from './shared/_models/confirm/confirm.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,13 @@ import { ConfirmComponent } from './shared/_models/confirm/confirm.component';
     SharedModule,
     QuillModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: AuthInterceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
