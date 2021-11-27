@@ -24,4 +24,29 @@ export class ProductService {
       })
     );
   }
+
+  public getAllProduct(): Observable<Product[]> {
+    return this.http.get<Product>(`${environment.fbDbUrl}/products.json`)
+      .pipe(
+        map((response: {[key: string]: any}) => {
+          return Object.keys(response).map( key => ({
+            ...response[key],
+            id: key,
+            date: new Date(response[key].date)
+          }))
+        }));
+  }
+
+  public getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${environment.fbDbUrl}/products/${id}.json`)
+    .pipe(
+      map((product: Product) => {
+        return {
+          ...product,
+          id,
+          date: new Date(product.date)
+        }
+      })
+    );
+  }
 }

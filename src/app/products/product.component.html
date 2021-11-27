@@ -1,0 +1,29 @@
+<div class="product">
+  <h2>{{ product.title }}</h2>
+
+  <div class="product__photo">
+    <quill-view-html [content]="product.photo"></quill-view-html>
+  </div>
+
+  <h2>Price: {{ product.price }} $</h2>
+
+  <div class="product__button">
+    <button 
+    [style.margin.px]='5'
+    mat-raised-button 
+    color="primary" 
+    [routerLink]="['/product', product.id]"
+  >
+    Open
+  </button>
+
+  <button 
+    [style.margin.px]='5' 
+    mat-raised-button color="primary" 
+    [routerLink]="['/shopping-cart']"
+  >
+    Add to shopping-cart
+  </button>
+  </div>
+  
+</div>

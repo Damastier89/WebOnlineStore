@@ -1,0 +1,13 @@
+.product {
+  text-align: center;
+
+  &__photo {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    display: inline-grid;
+    margin: 0px 55px;
+  } 
+}

@@ -1,0 +1,9 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__box {
+    width: 33.333%;
+    margin-top: 2rem;
+  }
+}

@@ -14,6 +14,7 @@ import { QuillModule } from "ngx-quill";
 import { ConfirmComponent } from './shared/_models/confirm/confirm.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { ProductComponent } from './products/product.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
     ProductPageComponent,
     ShoppingCartPageComponent,
     ConfirmComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

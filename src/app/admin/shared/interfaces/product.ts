@@ -5,4 +5,5 @@ export interface Product {
   info: string;
   price: number;
   date?: any;
+  id?: any;
 }

@@ -86,10 +86,10 @@ img {
   padding: 0 2rem;
 }
 
-.flex-center {
-  display: flex;
-  justify-content: center;
-}
+// .flex-center {
+//   display: flex;
+//   justify-content: center;
+// }
 
 .text-primary {
   color: var(--primary-color);
@@ -107,9 +107,9 @@ img {
   color: var(--danger-color);
 }
 
-// .text-center {
-//   text-align: center;
-// }
+.text-center {
+  text-align: center;
+}
 
 .list {
   margin: 0.5rem 0;
