@@ -70,7 +70,7 @@ export class AddProductPageComponent implements OnInit {
       this.productService.create(product).subscribe(() => {
         this.form.reset();
         this.submitted = false;
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
       });
 
       this._openSnackBar(SnackBarTypes.Success, "Товар успешно добавлен")

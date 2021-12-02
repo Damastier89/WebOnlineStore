@@ -49,4 +49,12 @@ export class ProductService {
       })
     );
   }
+
+  public updateProduct(product: Product): Observable<Product> {
+    return this.http.patch<Product>(`${environment.fbDbUrl}/products/${product.id}.json`, product);
+  }
+
+  public deleteProduct(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.fbDbUrl}/products/${id}.json`);
+  }
 }

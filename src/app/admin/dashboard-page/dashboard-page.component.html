@@ -1,1 +1,53 @@
-<p>dashboard-page works!</p>
+<div class="dashboard">
+  <div *ngIf="product.length;else loading">
+    <h2 class="dashboard__title">Dashboard of product</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Data of creation</th>
+          <th>Open</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let prod of product; let idx = index">
+          <td>{{ idx + 1 }}</td>
+          <td>{{ prod.title }}</td>
+          <td>{{ prod.price }}</td>
+          <td>{{ prod.date | date }}</td>
+          <td>
+            <button 
+              mat-raised-button 
+              color="primary"
+              [routerLink]="['/admin', 'product', 'product.id', 'edit']"
+            >
+              Open
+            </button>
+          </td>
+          <td>
+            <button 
+              mat-raised-button 
+              color="warn"
+              (click)="deleteProduct(prod.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+
+  </div>
+  
+  <ng-template #loading>
+    <p class="text-centor">Loading...</p>
+  </ng-template>
+</div>
