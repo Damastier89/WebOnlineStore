@@ -13,9 +13,10 @@ import { ConfirmComponent } from 'src/app/shared/_models/confirm/confirm.compone
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
-  public product: Product[] = [];
+  public products: Product[] = [];
   public prodSubscription!: Subscription;
   public removeSubscription!: Subscription;
+  public searchProductName: any = '';
 
   private confirmRef!: MatDialogRef<ConfirmComponent>;
 
@@ -26,9 +27,9 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.prodSubscription = this.productService.getAllProduct().subscribe((products: Product[]) => {
-      this.product = products;
-      console.log(this.product);
+    this.prodSubscription = this.productService.getAllProduct().subscribe((product: Product[]) => {
+      this.products = product;
+      console.log(this.products);
       
     })
   }
@@ -47,7 +48,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     this.confirmRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.removeSubscription = this.productService.deleteProduct(id).subscribe(() => {
-          this.product = this.product.filter(product => product.id !== id);
+          this.products = this.products.filter(product => product.id !== id);
           this._openSnackBar(SnackBarTypes.Warning, 'Продукт был удален');
         });
       } else {

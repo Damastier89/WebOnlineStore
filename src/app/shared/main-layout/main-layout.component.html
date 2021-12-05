@@ -2,16 +2,16 @@
   <h2 [style.paddingTop.px]="12">Online Store</h2>
     <ul class="navbar__menu">
       <li routerLinkActive="active">
-        <a href="">Phone</a>
+        <a (click)="setTypeProduct('Phone')">Phone</a>
       </li>
       <li routerLinkActive="active">
-        <a href="">Tablet</a>
+        <a (click)="setTypeProduct('Tablet')">Tablet</a>
       </li>
       <li routerLinkActive="active">
-        <a href="">Laptop</a>
+        <a (click)="setTypeProduct('Laptop')">Laptop</a>
       </li>
       <li routerLinkActive="active">
-        <a [routerLink]="['./shopping-cart']">Cart</a>
+        <a (click)="setTypeProduct('shopping-cart')" [routerLink]="['./shopping-cart']">Cart</a>
       </li>
     </ul>
 </nav>

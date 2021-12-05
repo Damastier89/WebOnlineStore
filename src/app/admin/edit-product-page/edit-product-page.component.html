@@ -1,1 +1,61 @@
-<p>edit-producte-page works!</p>
+<div *ngIf="form;else  loading">
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  
+    <h2 class="form__title">Edit Product</h2>
+  
+    <mat-form-field class="form__control" appearance="fill">
+      <mat-label>Product Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="phone">Phone</mat-option>
+        <mat-option value="tablet">Tablet</mat-option>
+        <mat-option value="laptop">Laptop</mat-option>
+      </mat-select>
+      <mat-error *ngIf="!form.controls['type'].hasError('required')">
+        Chose product type!
+      </mat-error>
+      <mat-error *ngIf="form.controls['type'].hasError('required')">
+        Type product is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="form__control" appearance="fill">
+      <mat-label>Product name</mat-label>
+      <input type="title" matInput formControlName="title" [errorStateMatcher]="matcher" placeholder="title product">
+      <mat-error *ngIf="!form.controls['title'].hasError('required')">
+        Enter product title!
+      </mat-error>
+      <mat-error *ngIf="form.controls['title'].hasError('required')">
+        Title product is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <div class="form__control">
+      <label for="photo">Photo :</label>
+      <quill-editor formControlName="photo"></quill-editor>
+    </div>
+  
+    <div class="form__control">
+      <label for="photo">Informations :</label>
+      <quill-editor formControlName="info"></quill-editor>
+    </div>
+  
+    <mat-form-field class="form__control" appearance="fill">
+      <mat-label>Price</mat-label>
+      <input type="price" matInput formControlName="price" [errorStateMatcher]="matcher" placeholder="price product">
+      <mat-error *ngIf="!form.controls['price'].hasError('required')">
+        Enter product price!
+      </mat-error>
+      <mat-error *ngIf="form.controls['price'].hasError('required')">
+        Price product is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid || submitted">Update producte</button>
+  
+  </form>
+</div>
+
+<ng-template #loading>
+  <p class="text-centor">Loading...</p>
+</ng-template>
+

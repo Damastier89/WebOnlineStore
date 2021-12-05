@@ -29,3 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Error - "import QuillType, { Delta } from 'quill'
 If an error occurs after installing ngx-quill and quill. Error - "import QuillType, { Delta } from 'quill'"
 Then you need to install : npm i @types/quill@1.3.10
+
+## More than one module matches. Use the skip-import option to skip importing the component into the closest module or use the module option to specify a module.
+exemple : ng g p shared/pipe/search --module app

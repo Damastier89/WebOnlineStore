@@ -1,7 +1,7 @@
 <div class="products" *ngIf="products$ | async as products; else loading">
   <app-product
     class="products__box"
-    *ngFor="let product of products" 
+    *ngFor="let product of products | sorting: producteService.typeProduct" 
     [product]="product">
   </app-product>
 </div>

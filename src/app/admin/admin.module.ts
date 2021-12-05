@@ -13,6 +13,7 @@ import { EditProductPageComponent } from './edit-product-page/edit-product-page.
 import { OrderProductPageComponent } from './order-product-page/order-product-page.component';
 import { SharedModule } from "../shared/shared.module";
 import { QuillModule } from "ngx-quill";
+import { SearchPipe } from '../admin/shared/pipe/search.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { QuillModule } from "ngx-quill";
     DashboardPageComponent,
     EditProductPageComponent,
     OrderProductPageComponent,
+    SearchPipe,
   ],
   imports: [
     CommonModule,

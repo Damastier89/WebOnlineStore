@@ -15,6 +15,7 @@ import { ConfirmComponent } from './shared/_models/confirm/confirm.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { ProductComponent } from './products/product.component';
+import { SortingPipe } from './shared/pipe/sorting.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProductComponent } from './products/product.component';
     ShoppingCartPageComponent,
     ConfirmComponent,
     ProductComponent,
+    SortingPipe,
   ],
   imports: [
     BrowserModule,

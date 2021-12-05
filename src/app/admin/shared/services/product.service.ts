@@ -9,6 +9,7 @@ import { Product } from '../interfaces/product';
   providedIn: 'root'
 })
 export class ProductService {
+  public typeProduct: any = "Phone";
 
   constructor(private http: HttpClient,) { }
 
@@ -56,5 +57,9 @@ export class ProductService {
 
   public deleteProduct(id: string): Observable<void> {
     return this.http.delete<void>(`${environment.fbDbUrl}/products/${id}.json`);
+  }
+
+  public setTypeProduct(typeCurrentProduct: any): void {
+    this.typeProduct = typeCurrentProduct;
   }
 }
