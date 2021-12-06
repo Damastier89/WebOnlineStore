@@ -28,9 +28,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.prodSubscription = this.productService.getAllProduct().subscribe((product: Product[]) => {
-      this.products = product;
-      console.log(this.products);
-      
+      this.products = product; 
     })
   }
 

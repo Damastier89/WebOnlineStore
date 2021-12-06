@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/admin/shared/services/product.service';
   styleUrls: ['./main-layout.component.scss']
 })
 export class MainLayoutComponent implements OnInit {
-  public typeProduct: any = 'Phone';
+  public typeProduct!: string;
 
   constructor(
     private router: Router,

@@ -1,1 +1,72 @@
-<p>shopping-cart-page works!</p>
+<div class="container" *ngIf="productInCart.length > 0; else empty">
+  <h2 class="text-center">Your order:</h2>
+
+  <table>
+    <tbody>
+      <tr *ngFor="let product of productInCart; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ product.type }}</td>
+        <td>{{ product.title }}</td>
+        <td>{{ product.price }} $</td>
+        <td>
+          <button mat-raised-button color="warn">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <b class="right">Total price: {{ totalPrice }} $</b>
+
+  <h2 class="text-center">Delivery:</h2>
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  
+    <mat-form-field class="form__control" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input type="name" matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="name product">
+      <mat-error *ngIf="!form.controls['name'].hasError('required')">
+        Enter product name!
+      </mat-error>
+      <mat-error *ngIf="form.controls['name'].hasError('required')">
+        Name product is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form__control" appearance="fill">
+      <mat-label>Phone number</mat-label>
+      <input type="phone" matInput formControlName="phone" [errorStateMatcher]="matcher" placeholder="phone">
+      <mat-error *ngIf="!form.controls['phone'].hasError('required')">
+        Enter your phone number!
+      </mat-error>
+      <mat-error *ngIf="form.controls['phone'].hasError('required')">
+        Your phone number is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form__control" appearance="fill">
+      <mat-label>Address</mat-label>
+      <input type="address" matInput formControlName="address" [errorStateMatcher]="matcher" placeholder="address">
+      <mat-error *ngIf="!form.controls['address'].hasError('required')">
+        Enter your address!
+      </mat-error>
+      <mat-error *ngIf="form.controls['address'].hasError('required')">
+        Your address is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="form__control" appearance="fill">
+      <mat-label>Plyment method:</mat-label>
+      <mat-select formControlName="plyment">
+        <mat-option value="cash">Cash</mat-option>
+        <mat-option value="card">Card</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid || submitted">Send order</button>
+  
+  </form>
+  
+</div>
+
+<ng-template #empty>
+  <h2 class="text-center">Shopping cart is empty...</h2>
+</ng-template>

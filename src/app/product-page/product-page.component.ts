@@ -25,4 +25,8 @@ export class ProductPageComponent implements OnInit {
     )
   }
 
+  public addProductToCard(product: Product): void {
+    this.productService.addProductToCart(product);
+  }
+
 }

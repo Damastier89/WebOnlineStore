@@ -9,7 +9,8 @@ import { Product } from '../interfaces/product';
   providedIn: 'root'
 })
 export class ProductService {
-  public typeProduct: any = "Phone";
+  public typeProduct: any = "phone";
+  public productCart: Product[] = [];
 
   constructor(private http: HttpClient,) { }
 
@@ -61,5 +62,9 @@ export class ProductService {
 
   public setTypeProduct(typeCurrentProduct: any): void {
     this.typeProduct = typeCurrentProduct;
+  }
+
+  public addProductToCart(product: Product): void {
+    this.productCart.push(product);
   }
 }
