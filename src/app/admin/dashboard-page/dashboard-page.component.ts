@@ -3,7 +3,7 @@ import { SnackBarService } from './../../shared/services/snack-bar.service';
 import { Product } from './../shared/interfaces/product';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductService } from '../shared/services/product.service';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmComponent } from 'src/app/shared/_models/confirm/confirm.component';
 
@@ -14,11 +14,10 @@ import { ConfirmComponent } from 'src/app/shared/_models/confirm/confirm.compone
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
   public products: Product[] = [];
-  public prodSubscription!: Subscription;
-  public removeSubscription!: Subscription;
   public searchProductName: any = '';
 
   private confirmRef!: MatDialogRef<ConfirmComponent>;
+  private destroyNotifier: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private productService: ProductService,
@@ -27,9 +26,15 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.prodSubscription = this.productService.getAllProduct().subscribe((product: Product[]) => {
+    this.productService.getAllProduct().pipe(takeUntil(this.destroyNotifier))
+    .subscribe((product: Product[]) => {
       this.products = product; 
     })
+  }
+
+  ngOnDestroy(): void {
+    this.destroyNotifier.next(true);
+    this.destroyNotifier.complete();
   }
 
   public deleteProduct(id: string): void {
@@ -45,7 +50,8 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
     this.confirmRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.removeSubscription = this.productService.deleteProduct(id).subscribe(() => {
+        this.productService.deleteProduct(id).pipe(takeUntil(this.destroyNotifier))
+        .subscribe(() => {
           this.products = this.products.filter(product => product.id !== id);
           this._openSnackBar(SnackBarTypes.Warning, 'Продукт был удален');
         });
@@ -54,16 +60,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       }
     })
     
-  }
-
-  ngOnDestroy(): void {
-    if (this.prodSubscription) {
-      this.prodSubscription.unsubscribe();
-    }
-
-    if (this.removeSubscription) {
-      this.removeSubscription.unsubscribe();
-    }
   }
 
   private _openSnackBar(actionType: string, message: string): void {

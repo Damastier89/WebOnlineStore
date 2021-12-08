@@ -1,1 +1,45 @@
-<p>order-producte-page works!</p>
+<div class="orders">
+  <div *ngIf="orders.length; else noOrders">
+    <h2 class="orders__title">Table of Orders</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Date of order</th>
+          <th>Address / Phone</th>
+          <th>Plyment</th>
+          <th>Price</th>
+          <th>Products</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let custumer of orders; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ custumer.name }}</td>
+          <td>{{ custumer.date | date:"d.MM.y H:mm" }}</td>
+          <td>
+            <div>{{ custumer.address }}</div>
+            <div>{{ custumer.phone }}</div>
+          </td>
+          <td>{{ custumer.plyment }}</td>
+          <td>{{ custumer.price }}$</td>
+          <td>
+            <div *ngFor="let producte of custumer.orders">
+              {{ producte.title }}
+            </div>
+          </td>
+          <td>
+            <button mat-raised-button color="primary" (click)="deleteOrder(custumer.id)">Complited</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noOrders>
+    <p class="text-centor">No orders...</p>
+  </ng-template>
+</div>

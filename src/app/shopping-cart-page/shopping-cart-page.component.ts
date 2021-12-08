@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Product } from '../admin/shared/interfaces/product';
 import { ProductService } from '../admin/shared/services/product.service';
 import { Order } from '../shared/interfaces/order';
+import { OrderService } from '../shared/services/order.service';
 import { SnackBarService } from '../shared/services/snack-bar.service';
 import { ConfirmComponent } from '../shared/_models/confirm/confirm.component';
 import { SnackBarTypes } from '../shared/_models/snack-bar-types.enum';
@@ -38,7 +39,7 @@ export class ShoppingCartPageComponent implements OnInit {
     private productService: ProductService,
     private dialog: MatDialog,
     private snackBarService: SnackBarService,
-
+    private orderService: OrderService,
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +50,7 @@ export class ShoppingCartPageComponent implements OnInit {
   public submit(): void {
     this.confirmRef = this.dialog.open(ConfirmComponent, {
       data: {
-        text: "Закончить добавление товаров?",
+        text: "Отправить заказ?",
         buttons: {
           confirm: "Да",
           cancel: "Нет"
@@ -62,21 +63,33 @@ export class ShoppingCartPageComponent implements OnInit {
         if (this.form.invalid) {
           return;
         }
-        const product: Order = {
+
+        this.submitted = true;
+
+        const order: Order = {
           name: this.form.value.name,
           phone: this.form.value.phone,
           address: this.form.value.address,
           plyment: this.form.value.plyment,
+          price: this.totalPrice,
+          orders: this.productInCart,
           date: new Date(),
         }
-      this.submitted = true;
-
-      this._openSnackBar(SnackBarTypes.Success, "Товар успешно добавлен")
+        this.orderService.addProductToDb(order).subscribe(() => {
+          this.form.reset();
+          this.submitted = false;
+        });
+        this._openSnackBar(SnackBarTypes.Success, "Заказ успешно отправлен")
       } else {
-        this._openSnackBar(SnackBarTypes.Warning, "Добавление товара прервано")
+        this._openSnackBar(SnackBarTypes.Warning, "Отправка заказа прервана")
       }
     });
     
+  }
+
+  public deleteProductInCart(product: Product): void {
+    this.totalPrice -= +product.price;
+    this.productInCart.splice(this.productInCart.indexOf(product), 1);
   }
 
   private _openSnackBar(actionType: string, message: string): void {
