@@ -18,6 +18,8 @@ import { ProductComponent } from './products/product.component';
 import { SortingPipe } from './shared/pipe/sorting.pipe';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     SharedModule,
     QuillModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     {

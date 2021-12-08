@@ -52,7 +52,6 @@ export class AuthService {
 
   private hendelError(error: HttpErrorResponse) {
     const {message} = error.error.error;
-    console.log(message)
     switch(message) {
       case 'EMAIL_NOT_FOUND':
         this.error$.next('Данный email не найден')
